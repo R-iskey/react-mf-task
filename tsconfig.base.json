@@ -15,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@react-module-federation/shared-components": [
-        "libs/shared-components/src/index.ts"
-      ]
+      "@picsart/ui": ["libs/ui/src/index.ts"],
+      "@picsart/home/feature-tasks-list": [
+        "libs/home/feature-tasks-list/src/index.ts"
+      ],
+      "@picsart/shared/data-access": ["libs/shared/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

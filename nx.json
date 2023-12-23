@@ -1,5 +1,5 @@
 {
-  "npmScope": "react-module-federation",
+  "npmScope": "picsart",
   "affected": {
     "defaultBase": "main"
   },
@@ -22,7 +22,8 @@
       },
       "library": {
         "style": "css",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "jest"
       }
     }
   },

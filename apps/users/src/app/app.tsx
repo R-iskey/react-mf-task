@@ -1,8 +1,11 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { UsersFeatureUsersList } from "@picsart/users/feature-users-list";
 
 export function App() {
   return (
-    <div>Users Page</div>
+    <div>
+      <h1>Users</h1>
+      <UsersFeatureUsersList />
+    </div>
   );
 }
 

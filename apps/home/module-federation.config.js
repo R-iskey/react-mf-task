@@ -1,4 +1,4 @@
-const sharedLibraries = new Set([
+const notSharedLibraries = new Set([
   'swr',
 ]);
 
@@ -8,7 +8,8 @@ module.exports = {
     './Module': './src/remote-entry.ts',
   },
   shared: (library) => {
-    if (sharedLibraries.has(library)) {
+    if (notSharedLibraries.has(library)) {
+      // @see: https://github.com/webpack/webpack/issues/16125
       return false;
     }
   },

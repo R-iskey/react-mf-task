@@ -22,6 +22,10 @@ export function Pagination(props: PaginationProps) {
   };
 
   const renderPageNumbers = () => {
+    if (totalPages < 2) {
+      return null;
+    }
+
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(

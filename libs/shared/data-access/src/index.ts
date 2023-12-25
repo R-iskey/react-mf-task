@@ -1,3 +1,3 @@
 export * from './lib/hooks';
 
-export type * from './types/todo.d.ts';
+export type * from './types/todo.ts';

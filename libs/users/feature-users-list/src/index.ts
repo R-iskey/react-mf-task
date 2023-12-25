@@ -1,1 +1,1 @@
-export * from './lib/users-feature-users-list';
+export {UsersFeatureUsersList as default} from './lib/users-feature-users-list';

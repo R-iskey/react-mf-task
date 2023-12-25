@@ -20,6 +20,9 @@
       ],
       "@picsart/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@picsart/ui": ["libs/ui/src/index.ts"],
+      "@picsart/users/feature-user-detail": [
+        "libs/users/feature-user-detail/src/index.ts"
+      ],
       "@picsart/users/feature-users-list": [
         "libs/users/feature-users-list/src/index.ts"
       ]

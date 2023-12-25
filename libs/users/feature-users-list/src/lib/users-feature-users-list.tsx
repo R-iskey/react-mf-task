@@ -1,6 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 import { TOTAL_USERS, useUserApi } from "@picsart/shared/data-access";
 import { Pagination } from "@picsart/ui";
+import { Link } from "react-router-dom";
 
 export function UsersFeatureUsersList() {
   const [page, setPage] = useState(1);
@@ -35,12 +36,12 @@ export function UsersFeatureUsersList() {
         </tr>
         </thead>
         <tbody>
-        {users.map(todo => (
-          <tr key={todo.id}>
-            <td>{todo.name}</td>
-            <td>{todo.email}</td>
+        {users.map(user => (
+          <tr key={user.id}>
+            <td><Link to={`${user.id}`}>{user.name}</Link></td>
+            <td>{user.email}</td>
             <td>
-              <button onClick={() => performDelete(todo.id)}>Delete</button>
+              <button onClick={() => performDelete(user.id)}>Delete</button>
             </td>
           </tr>
         ))}

@@ -1,15 +1,16 @@
 import * as React from "react";
 
-const Home = React.lazy(() => import("home/Module"));
-const Users = React.lazy(() => import("users/Module"));
+const HomeRootApp = React.lazy(() => import("home/Module"));
+const UsersRootApp = React.lazy(() => import("users/Module"));
 
 export const appRoutes = [
   {
     path: '/',
-    element: <Home />
+    index: true,
+    element: <HomeRootApp />
   },
   {
-    path: '/users',
-    element: <Users />
+    path: '/users/*',
+    element: <UsersRootApp />
   }
 ]

@@ -9,6 +9,7 @@ interface IUserApiOptions {
   search?: string;
   sort?: string;
   sortDir?: Order;
+  userId?: string;
 }
 
 const USER_SWR_KEY = "api/user";
@@ -20,18 +21,31 @@ const USER_SWR_KEY = "api/user";
 export const TOTAL_USERS = 10;
 
 export function useUserApi(options: IUserApiOptions) {
-  const fetcher = async ([key, {page = 1, limit = 15, search, sort, sortDir}]: [string, IUserApiOptions]) => {
+  const fetcher = async ([, params]: [string, IUserApiOptions]) => {
+    const { page = 1, limit = 15, search, sort, sortDir, userId } = params;
+
     const url = new URL(`${getPlaceholderApi()}/users`);
-    if (search) {
-      url.searchParams.append("name", search);
-    }
-    if (sort) {
-      url.searchParams.append("_sort", sort);
-      url.searchParams.append("_order", sortDir ? sortDir : 'asc');
+    const { searchParams: sp } = url;
+
+    if (userId) {
+      sp.append("id", userId);
+
+      const res = await fetch(url);
+      return await res.json();
     }
 
-    url.searchParams.append('_page', String(page));
-    url.searchParams.append('_limit', String(limit));
+    if (search) {
+      sp.append("name", search);
+    }
+
+    if (sort) {
+      sp.append("_sort", sort);
+      sp.append("_order", sortDir ? sortDir : "asc");
+    }
+
+    sp.append("_page", String(page));
+    sp.append("_limit", String(limit));
+
 
     const res = await fetch(url);
     return await res.json();

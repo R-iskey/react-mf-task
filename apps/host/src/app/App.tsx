@@ -7,19 +7,23 @@ import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { Box } from '@chakra-ui/react';
 import { ThemeProvider } from '@picsart/ui';
 import { Navigation } from './components/navigation/Navigation';
+import { useRef } from 'react';
 
 export function App() {
+  const boxRef = useRef(null);
+
   const location = useLocation();
 
   return (
     <ThemeProvider>
       <Navigation />
 
-      <Box minH={'100vh'} flexDirection={'column'}>
+      <Box minH={'100vh'} flexDirection={'column'} ref={boxRef}>
         <SwitchTransition>
           <CSSTransition
             key={location.key}
             timeout={300}
+            nodeRef={boxRef}
             unmountOnExit
             classNames="page"
           >

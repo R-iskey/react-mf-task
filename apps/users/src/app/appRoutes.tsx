@@ -1,16 +1,27 @@
-import * as React from "react";
+import * as React from 'react';
+import { Page } from '@picsart/ui';
 
-const UsersList = React.lazy(() => import("@picsart/users/feature-users-list"));
-const UserDetails = React.lazy(() => import("@picsart/users/feature-user-detail"));
+const UsersList = React.lazy(() => import('@picsart/users/feature-users-list'));
+const UserDetails = React.lazy(
+  () => import('@picsart/users/feature-user-detail')
+);
 
 export const appRoutes = [
   {
-    path: "/",
+    path: '/',
     index: true,
-    element: <UsersList />
+    element: (
+      <Page title={'Users'}>
+        <UsersList />
+      </Page>
+    ),
   },
   {
-    path: "/:id",
-    element: <UserDetails />
-  }
+    path: '/:id',
+    element: (
+      <Page title={'User Detail'}>
+        <UserDetails />
+      </Page>
+    ),
+  },
 ];

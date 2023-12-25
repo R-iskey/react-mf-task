@@ -1,7 +1,7 @@
-import { getPlaceholderApi, swrBaseOptions } from "../helpers";
-import { User } from "../../types/user";
-import useSWR from "swr";
-import { Order } from "../../types/common/order";
+import { getPlaceholderApi, swrBaseOptions } from '../helpers';
+import { User } from '../../types/user';
+import useSWR from 'swr';
+import { Order } from '../../types/common/order';
 
 interface IUserApiOptions {
   page?: number;
@@ -12,7 +12,7 @@ interface IUserApiOptions {
   userId?: string;
 }
 
-const USER_SWR_KEY = "api/user";
+const USER_SWR_KEY = 'api/user';
 
 /**
  * @see: https://jsonplaceholder.typicode.com/
@@ -28,24 +28,23 @@ export function useUserApi(options: IUserApiOptions) {
     const { searchParams: sp } = url;
 
     if (userId) {
-      sp.append("id", userId);
+      sp.append('id', userId);
 
       const res = await fetch(url);
       return await res.json();
     }
 
     if (search) {
-      sp.append("name", search);
+      sp.append('name', search);
     }
 
     if (sort) {
-      sp.append("_sort", sort);
-      sp.append("_order", sortDir ? sortDir : "asc");
+      sp.append('_sort', sort);
+      sp.append('_order', sortDir ? sortDir : 'asc');
     }
 
-    sp.append("_page", String(page));
-    sp.append("_limit", String(limit));
-
+    sp.append('_page', String(page));
+    sp.append('_limit', String(limit));
 
     const res = await fetch(url);
     return await res.json();
@@ -55,23 +54,23 @@ export function useUserApi(options: IUserApiOptions) {
     data = [],
     error,
     isLoading,
-    mutate
+    mutate,
   } = useSWR<User[]>([USER_SWR_KEY, options], fetcher, swrBaseOptions());
 
   const performDelete = (id: number) => {
     const optimisticDelete = async () => {
       await fetch(`${getPlaceholderApi()}/users/${id}`, {
-        method: "DELETE"
+        method: 'DELETE',
       });
 
-      return data.filter(t => t.id !== id);
+      return data.filter((t) => t.id !== id);
     };
 
     mutate(optimisticDelete, {
-      optimisticData: data.filter(u => u.id !== id),
+      optimisticData: data.filter((u) => u.id !== id),
       rollbackOnError: true,
       populateCache: true,
-      revalidate: false
+      revalidate: false,
     });
   };
 
@@ -79,6 +78,7 @@ export function useUserApi(options: IUserApiOptions) {
     users: data,
     performDelete,
     isLoading,
-    isError: error
+    error,
+    isEmpty: !isLoading && !data.length,
   };
 }

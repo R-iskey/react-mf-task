@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
+import { Box, HStack } from "@chakra-ui/react";
 import * as React from "react";
+import { NavItem } from "./NavItem";
 
-function Navigation() {
+export function Navigation() {
   return (
-    <header role={'navigation'}>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/users">Users</Link>
-      </nav>
-    </header>
+    <Box as={"header"} role={"navigation"} flex={"0 0 auto"} bg={"gray.100"} p={3}>
+      <HStack as={"nav"} gap={4}>
+        <NavItem to={"/"}>Home</NavItem>
+        <NavItem to="/users">Users</NavItem>
+      </HStack>
+    </Box>
   );
 }
-
-export default Navigation;

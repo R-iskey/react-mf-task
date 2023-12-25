@@ -1,3 +1,5 @@
+import { Box, Button, Flex } from '@chakra-ui/react';
+
 interface PaginationProps {
   totalItems: number;
   currentPage: number;
@@ -6,12 +8,7 @@ interface PaginationProps {
 }
 
 export function Pagination(props: PaginationProps) {
-  const {
-    totalItems,
-    currentPage,
-    perPage,
-    onPageChange
-  } = props;
+  const { totalItems, currentPage, perPage, onPageChange } = props;
 
   const totalPages = Math.ceil(totalItems / perPage);
 
@@ -22,31 +19,33 @@ export function Pagination(props: PaginationProps) {
   };
 
   const renderPageNumbers = () => {
-    if (totalPages < 2) {
-      return null;
-    }
-
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
       pageNumbers.push(
-        <button
+        <Button
           key={i}
-          style={{width: '20px'}}
-          className={i === currentPage ? "active" : ""}
+          size={'sm'}
           onClick={() => handlePageChange(i)}
+          variant={'link'}
+          isActive={i === currentPage}
         >
           {i}
-        </button>
+        </Button>
       );
     }
     return pageNumbers;
   };
 
+  if (totalPages < 2) {
+    return null;
+  }
+
   return (
-    <div className="pagination">
-      <div style={{display: 'flex'}}>
+    <Box my={3} bg={'gray.100'} py={3} borderRadius={'md'} px={2}>
+      <Flex>
+        Page:
         {renderPageNumbers()}
-      </div>
-    </div>
+      </Flex>
+    </Box>
   );
 }

@@ -1,1 +1,1 @@
-export {UsersFeatureUserDetail as default} from './lib/users-feature-user-detail';
+export { UserDetail as default } from './lib/user-detail';

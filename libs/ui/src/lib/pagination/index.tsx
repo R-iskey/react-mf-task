@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react';
 
 interface PaginationProps {
   totalItems: number;
@@ -9,6 +9,8 @@ interface PaginationProps {
 
 export function Pagination(props: PaginationProps) {
   const { totalItems, currentPage, perPage, onPageChange } = props;
+
+  const bg = useColorModeValue('gray.100', 'gray.900');
 
   const totalPages = Math.ceil(totalItems / perPage);
 
@@ -41,7 +43,7 @@ export function Pagination(props: PaginationProps) {
   }
 
   return (
-    <Box my={3} bg={'gray.100'} py={3} borderRadius={'md'} px={2}>
+    <Box my={3} bg={bg} py={3} borderRadius={'md'} px={2}>
       <Flex>
         Page:
         {renderPageNumbers()}

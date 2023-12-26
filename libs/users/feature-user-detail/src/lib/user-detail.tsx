@@ -24,9 +24,11 @@ export function UserDetail() {
     return <Box>User Not found</Box>;
   }
 
+  const handleNavigateBack = () => navigate(-1);
+
   return (
     <Page title={'User Detail'}>
-      <Button onClick={() => navigate(-1)} colorScheme={'teal'} mb={4}>
+      <Button onClick={handleNavigateBack} colorScheme={'teal'} mb={4}>
         Back
       </Button>
       {isLoading && <Skeleton h={'120px'} />}

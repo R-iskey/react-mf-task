@@ -10,7 +10,7 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { Todo } from '@picsart/shared/data-access';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 interface ITaskTableProps {
   data: Todo[];
@@ -20,7 +20,7 @@ interface ITaskTableProps {
   onUpdate(id: number, payload: Partial<Todo>): void;
 }
 
-export function TasksTable({ data, onDelete, onUpdate }: ITaskTableProps) {
+function TasksTableComponent({ data, onDelete, onUpdate }: ITaskTableProps) {
   const handleTodoToggle =
     (id: number) => (evt: ChangeEvent<HTMLInputElement>) => {
       const isChecked = evt.target.checked;
@@ -72,3 +72,5 @@ export function TasksTable({ data, onDelete, onUpdate }: ITaskTableProps) {
     </TableContainer>
   );
 }
+
+export const TasksTable = memo(TasksTableComponent);

@@ -4,7 +4,7 @@ import { Page, Pagination, TableAlert, TableSkeleton } from '@picsart/ui';
 import { Box, Button, HStack, Input } from '@chakra-ui/react';
 import { UsersTable } from './users-table';
 
-export function UsersFeatureUsersList() {
+export function UsersList() {
   const [page, setPage] = useState(1);
 
   const [term, setTerm] = useState<string>('');

@@ -1,4 +1,5 @@
 import { Box, Button, Flex, useColorModeValue } from '@chakra-ui/react';
+import { memo } from 'react';
 
 interface PaginationProps {
   totalItems: number;
@@ -7,7 +8,7 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export function Pagination(props: PaginationProps) {
+function PaginationComponent(props: PaginationProps) {
   const { totalItems, currentPage, perPage, onPageChange } = props;
 
   const bg = useColorModeValue('gray.100', 'gray.900');
@@ -51,3 +52,5 @@ export function Pagination(props: PaginationProps) {
     </Box>
   );
 }
+
+export const Pagination = memo(PaginationComponent);

@@ -2,6 +2,7 @@ import { getPlaceholderApi, swrBaseOptions } from '../helpers';
 import { User } from '../../types/user';
 import useSWR from 'swr';
 import { Order } from '../../types/common/order';
+import { useCallback } from 'react';
 
 interface IUserApiOptions {
   page?: number;
@@ -57,7 +58,7 @@ export function useUserApi(options: IUserApiOptions) {
     mutate,
   } = useSWR<User[]>([USER_SWR_KEY, options], fetcher, swrBaseOptions());
 
-  const performDelete = (id: number) => {
+  const performDelete = useCallback((id: number) => {
     const optimisticDelete = async () => {
       await fetch(`${getPlaceholderApi()}/users/${id}`, {
         method: 'DELETE',
@@ -72,7 +73,7 @@ export function useUserApi(options: IUserApiOptions) {
       populateCache: true,
       revalidate: false,
     });
-  };
+  }, []);
 
   return {
     users: data,

@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { User } from '@picsart/shared/data-access';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 interface IUserTableProps {
   users: User[];
@@ -18,7 +19,7 @@ interface IUserTableProps {
   onDelete(id: number): void;
 }
 
-export function UsersTable({ users, onDelete }: IUserTableProps) {
+function UsersTableComponent({ users, onDelete }: IUserTableProps) {
   return (
     <TableContainer>
       <Table variant="striped">
@@ -59,3 +60,5 @@ export function UsersTable({ users, onDelete }: IUserTableProps) {
     </TableContainer>
   );
 }
+
+export const UsersTable = memo(UsersTableComponent);

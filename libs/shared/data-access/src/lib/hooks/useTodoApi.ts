@@ -1,6 +1,7 @@
 import { getPlaceholderApi, swrBaseOptions } from '../helpers';
 import { Todo } from '../../types/todo';
 import useSWR from 'swr';
+import { useCallback } from 'react';
 
 const TODO_SWR_KEY = 'api/todo';
 
@@ -24,7 +25,8 @@ export function useTodoApi(page = 1, limit = 15) {
     isLoading,
     mutate,
   } = useSWR<Todo[]>([TODO_SWR_KEY, page, limit], fetcher, swrBaseOptions());
-  const performDelete = (todoId: number) => {
+
+  const performDelete = useCallback((todoId: number) => {
     const optimisticDelete = async () => {
       await fetch(`${getPlaceholderApi()}/todos/${todoId}`, {
         method: 'DELETE',
@@ -39,8 +41,9 @@ export function useTodoApi(page = 1, limit = 15) {
       populateCache: true,
       revalidate: false,
     });
-  };
-  const postTodo = (title: string) => {
+  }, []);
+
+  const postTodo = useCallback((title: string) => {
     const todo = {
       id: 0,
       title,
@@ -65,8 +68,9 @@ export function useTodoApi(page = 1, limit = 15) {
       populateCache: true,
       revalidate: false,
     });
-  };
-  const performUpdate = (id: number, todo: Partial<Todo>) => {
+  }, []);
+
+  const performUpdate = useCallback((id: number, todo: Partial<Todo>) => {
     const updatedTodos = data.map((el) => {
       if (el.id === id) {
         return { ...el, ...todo };
@@ -89,7 +93,7 @@ export function useTodoApi(page = 1, limit = 15) {
       populateCache: true,
       revalidate: false,
     });
-  };
+  }, []);
 
   return {
     todos: data,

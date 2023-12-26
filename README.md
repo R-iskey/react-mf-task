@@ -11,6 +11,7 @@ This project demonstrates the implementation of micro frontends using Nx and Rea
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
 - [Solutions & Decisions](#solutions--decisions)
+- [App Metrics](#app-metrics)
 
 ### Features
 - **Home Page**
@@ -39,9 +40,10 @@ Ensure Node.js and npm are installed. Run `yarn install` to set up the necessary
 
 ### Usage
 - For running specific apps: `npx nx serve host`, `npx nx serve {home|users}`
-- For running host with remotes: `yarn serve-all`
+- For running host with remotes: `yarn serve:all`
 - For building the project: `yarn build`
 - For bundle analysis: `yarn analyze:prod:stats`
+- For serving production build, you should run 3 apps separately: `npx serve-static host --prod`, `npx serve-static home --prod`, `npx serve-static users --prod`
 
 ### Folder Structure
 The project structure adheres to NX best practices ([NX Concepts](https://nx.dev/concepts/more-concepts/applications-and-libraries)).
@@ -82,6 +84,18 @@ The application comprises four libraries: `home`, `users`, `shared`, and `ui`, s
 #### Serving Locally
 - `nx serve host`: Builds all remotes and restores them from cache for static viewing.
 - `nx serve host --devRemotes=home,users`: Builds and starts dev servers for `home` and `users`.
+
+
+### App Metrics
+1. Nx graph is available by `nx graph` command, this is the result of dependecies
+![Project graph](./readme-assets/graph.png)
+
+2. This is the report of webpack analyzer
+![Webpack report](./readme-assets/webpack.png)
+
+3. This is the report of lighthouse
+![Lighthouse graph](./readme-assets/lighthouse.png)
+
 
 **Read More:** [Guide on Module Federation and Faster Builds](https://nx.dev/module-federation/faster-builds)
 

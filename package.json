@@ -6,6 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "serve-all": "nx serve host --removeDev=home,users",
     "webpack-bundle-analyzer": "webpack-bundle-analyzer dist/apps/host/stats.json",
     "build:prod:stats": "nx build --skip-nx-cache --statsJson",
     "analyze:prod:stats": "run-s \"build:prod:stats\" \"webpack-bundle-analyzer\""

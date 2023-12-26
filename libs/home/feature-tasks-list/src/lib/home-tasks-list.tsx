@@ -17,6 +17,8 @@ export function HomeTasksList() {
     performUpdate,
   } = useTodoApi(page);
 
+  console.log(todos);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const handleAddTodo = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

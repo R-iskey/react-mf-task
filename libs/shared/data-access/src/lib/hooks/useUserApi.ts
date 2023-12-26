@@ -58,22 +58,25 @@ export function useUserApi(options: IUserApiOptions) {
     mutate,
   } = useSWR<User[]>([USER_SWR_KEY, options], fetcher, swrBaseOptions());
 
-  const performDelete = useCallback((id: number) => {
-    const optimisticDelete = async () => {
-      await fetch(`${getPlaceholderApi()}/users/${id}`, {
-        method: 'DELETE',
+  const performDelete = useCallback(
+    (id: number) => {
+      const optimisticDelete = async () => {
+        await fetch(`${getPlaceholderApi()}/users/${id}`, {
+          method: 'DELETE',
+        });
+
+        return data.filter((t) => t.id !== id);
+      };
+
+      mutate(optimisticDelete, {
+        optimisticData: data.filter((u) => u.id !== id),
+        rollbackOnError: true,
+        populateCache: true,
+        revalidate: false,
       });
-
-      return data.filter((t) => t.id !== id);
-    };
-
-    mutate(optimisticDelete, {
-      optimisticData: data.filter((u) => u.id !== id),
-      rollbackOnError: true,
-      populateCache: true,
-      revalidate: false,
-    });
-  }, []);
+    },
+    [data]
+  );
 
   return {
     users: data,

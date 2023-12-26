@@ -2,7 +2,7 @@ import { TOTAL_TODOS, useTodoApi } from '@picsart/shared/data-access';
 import { FormEvent, useRef, useState } from 'react';
 import { TasksTable } from './tasks-table';
 import { Box, Button, HStack, Input } from '@chakra-ui/react';
-import { Pagination, TableAlert, TableSkeleton } from '@picsart/ui';
+import { Page, Pagination, TableAlert, TableSkeleton } from '@picsart/ui';
 
 export function HomeTasksList() {
   const [page, setPage] = useState(1);
@@ -32,7 +32,7 @@ export function HomeTasksList() {
   };
 
   return (
-    <Box>
+    <Page title={'Home'}>
       <form onSubmit={handleAddTodo}>
         <HStack>
           <Input
@@ -69,6 +69,6 @@ export function HomeTasksList() {
           </>
         )}
       </Box>
-    </Box>
+    </Page>
   );
 }

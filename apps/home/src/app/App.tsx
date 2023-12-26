@@ -1,13 +1,10 @@
-import { HomeTasksList } from "@picsart/home/feature-tasks-list";
-import { ChakraProvider } from "@chakra-ui/react";
-import { Page } from "@picsart/ui";
+import { HomeTasksList } from '@picsart/home/feature-tasks-list';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export function App() {
   return (
     <ChakraProvider>
-      <Page title={"Home"}>
-        <HomeTasksList />
-      </Page>
+      <HomeTasksList />
     </ChakraProvider>
   );
 }

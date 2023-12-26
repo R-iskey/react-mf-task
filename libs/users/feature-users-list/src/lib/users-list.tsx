@@ -1,6 +1,6 @@
 import { FormEvent, useRef, useState } from 'react';
 import { TOTAL_USERS, useUserApi } from '@picsart/shared/data-access';
-import { Pagination, TableAlert, TableSkeleton } from '@picsart/ui';
+import { Page, Pagination, TableAlert, TableSkeleton } from '@picsart/ui';
 import { Box, Button, HStack, Input } from '@chakra-ui/react';
 import { UsersTable } from './users-table';
 
@@ -25,7 +25,7 @@ export function UsersFeatureUsersList() {
   };
 
   return (
-    <Box>
+    <Page title={'Users'}>
       <form onSubmit={handleSearch}>
         <HStack>
           <Input
@@ -59,6 +59,6 @@ export function UsersFeatureUsersList() {
           </>
         )}
       </Box>
-    </Box>
+    </Page>
   );
 }

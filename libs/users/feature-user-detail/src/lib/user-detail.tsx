@@ -6,13 +6,11 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Flex,
   Heading,
   Skeleton,
-  Spacer,
   Text,
-  VStack,
 } from '@chakra-ui/react';
+import { Page } from '@picsart/ui';
 
 export function UserDetail() {
   const { id: userId } = useParams();
@@ -27,7 +25,7 @@ export function UserDetail() {
   }
 
   return (
-    <Box>
+    <Page title={'User Detail'}>
       <Button onClick={() => navigate(-1)} colorScheme={'teal'} mb={4}>
         Back
       </Button>
@@ -56,6 +54,6 @@ export function UserDetail() {
           </CardBody>
         </Card>
       )}
-    </Box>
+    </Page>
   );
 }

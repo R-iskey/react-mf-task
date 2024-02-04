@@ -1,4 +1,4 @@
-# Picsart Task - Micro Frontends with Nx and React.js
+# Task - Micro Frontends with Nx and React.js
 
 ### Description
 This project demonstrates the implementation of micro frontends using Nx and React.js. It showcases a simple assignment as an example of my skills in React.js and web development.
